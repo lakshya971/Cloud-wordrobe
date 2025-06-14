@@ -52,7 +52,7 @@ interface OrderTrackingProps {
   className?: string;
 }
 
-export function OrderTracking({ orderId, trackingNumber, className }: OrderTrackingProps) {
+export function OrderTrackingFixed({ orderId, trackingNumber, className }: OrderTrackingProps) {
   const [trackingInput, setTrackingInput] = useState(trackingNumber || '');
   const [trackingData, setTrackingData] = useState<ShippingDetails | null>(null);
   const [isLoading, setIsLoading] = useState(false);
