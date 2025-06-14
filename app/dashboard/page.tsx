@@ -8,6 +8,7 @@ import { VendorDashboard } from '@/components/dashboard/vendor-dashboard';
 import { AdminDashboard } from '@/components/dashboard/admin-dashboard';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import LoadingWrapper from '@/components/ui/loading-wrapper';
 import { toast } from 'sonner';
 
 export default function DashboardPage() {
@@ -20,14 +21,19 @@ export default function DashboardPage() {
       router.push('/auth/login');
     }
   }, [isAuthenticated, isLoading, router]);
+
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50">
-        <div className="text-center">
-          <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-orange-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 font-medium">Loading your dashboard...</p>
-        </div>
-      </div>
+      <LoadingWrapper
+        isLoading={true}
+        message="Loading your dashboard..."
+        className="min-h-screen"
+        variant="spinner"
+        size="lg"
+        minDelay={1500}
+      >
+        <div></div>
+      </LoadingWrapper>
     );
   }
 

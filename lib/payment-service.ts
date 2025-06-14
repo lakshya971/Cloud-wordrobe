@@ -237,7 +237,11 @@ export async function processCartPayment(
 }
 
 // Utility function for vendor registration payments
-export async function processVendorRegistrationPayment(data: {
+export async function processVendorRegistrationPayment({
+  amount,
+  vendorData,
+  customerInfo
+}: {
   amount: number;
   vendorData: any;
   customerInfo?: {
@@ -247,10 +251,10 @@ export async function processVendorRegistrationPayment(data: {
   };
 }): Promise<PaymentResponse> {
   const paymentData: PaymentData = {
-    amount: data.amount,
+    amount,
     currency: 'INR',
-    description: `Vendor registration - ${data.vendorData.businessName}`,
-    customerInfo: data.customerInfo,
+    description: `Vendor Registration - ${vendorData.businessName}`,
+    customerInfo,
   };
 
   return await paymentService.processPayment(paymentData);

@@ -85,11 +85,15 @@ export interface Order {
   id: number;
   userId: number;
   type: 'buy' | 'rent';
-  status: 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'returned' | 'cancelled';
+  status: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'out_for_delivery' | 'delivered' | 'returned' | 'cancelled';
   totalAmount: number;
   deliveryDate?: Date;
   returnDate?: Date;
   address: string;
+  trackingNumber?: string;
+  shippingProvider?: string;
+  shippingCost?: number;
+  estimatedDelivery?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -102,6 +106,24 @@ export interface OrderItem {
   price: number;
   rentDays?: number;
   securityDeposit?: number;
+}
+
+export interface ShippingStatus {
+  id: number;
+  orderId: number;
+  status: string;
+  description: string;
+  location?: string;
+  timestamp: Date;
+  isCompleted: boolean;
+}
+
+export interface ShippingProvider {
+  id: string;
+  name: string;
+  trackingUrl: string;
+  apiEndpoint?: string;
+  isActive: boolean;
 }
 
 // Database initialization function
