@@ -21,13 +21,22 @@ export default function VendorLoginPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      // TODO: Implement vendor-specific login logic      // TODO: Implement vendor-specific authentication
-      await login({
-        email,
-        password,
-        role: 'vendor'
+    try {      const response = await fetch('/api/auth/vendor/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
       });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      // Call login with the token and user data received from the API
+      await login(data.token, data.user);
       toast.success('Welcome back!');
       router.push('/dashboard/vendor');
     } catch (error) {
