@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { OrderTrackingFixed as OrderTracking } from '@/components/shipping';
+import { OrderTrackingFixed, SimpleOrderTracking } from '@/components/shipping';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
