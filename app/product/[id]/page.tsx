@@ -102,8 +102,7 @@ const mockProduct: Product = {
   ]
 };
 
-export default function ProductDetailPage() {
-  const params = useParams();
+export default function ProductDetailPage() {  const params = useParams();
   const router = useRouter();
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -123,8 +122,16 @@ export default function ProductDetailPage() {
     end: null
   });
 
+  // Get the product ID from params, ensuring it's a string
+  const productId = params?.id ? (Array.isArray(params.id) ? params.id[0] : params.id) : null;
+
   useEffect(() => {
-    // In a real app, fetch product data based on params.id
+    if (!productId) {
+      console.error("Product ID is missing");
+      return;
+    }
+    
+    // In a real app, fetch product data based on productId
     // For now, using mock data
     setTimeout(() => {
       setProduct(mockProduct);
@@ -132,7 +139,7 @@ export default function ProductDetailPage() {
       setSelectedColor(mockProduct.colors[0]);
       setLoading(false);
     }, 500);
-  }, [params.id]);
+  }, [productId]);
 
   const handleAddToCart = (type: 'buy' | 'rent') => {
     if (!product) return;

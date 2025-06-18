@@ -30,9 +30,11 @@ export default function ShopPage() {
 
   // Handle URL search params
   useEffect(() => {
-    const urlSearchQuery = searchParams.get('search');
-    if (urlSearchQuery) {
-      setSearchQuery(urlSearchQuery);
+    if (searchParams) {
+      const urlSearchQuery = searchParams.get('search');
+      if (urlSearchQuery) {
+        setSearchQuery(urlSearchQuery);
+      }
     }
   }, [searchParams]);
 

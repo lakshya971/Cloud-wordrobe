@@ -20,10 +20,9 @@ import {
   Users
 } from 'lucide-react';
 
-export default function TrackingPage() {
-  const searchParams = useSearchParams();
-  const trackingNumber = searchParams.get('tracking');
-  const orderId = searchParams.get('order');
+export default function TrackingPage() {  const searchParams = useSearchParams();
+  const trackingNumber = searchParams ? searchParams.get('tracking') : null;
+  const orderId = searchParams ? searchParams.get('order') : null;
   
   const [recentOrders, setRecentOrders] = useState<any[]>([]);
 
