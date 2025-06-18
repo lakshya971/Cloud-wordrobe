@@ -19,9 +19,20 @@
   font-weight: normal;
 }
 
+/* Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Additional base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
 
 /* Prevent horizontal scrolling */
 html, body {

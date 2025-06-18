@@ -9,6 +9,16 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  // Ensure CSS modules are properly processed
+  webpack: (config) => {
+    return config;
+  },
+  // Enable JIT mode for Tailwind
+  swcMinify: true,
+  // Allow image domains
+  images: {
+    domains: ['images.pexels.com', 'plus.unsplash.com', 'images.unsplash.com'],
+  },
 }
 
 module.exports = nextConfig

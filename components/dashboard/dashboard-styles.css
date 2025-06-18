@@ -1,0 +1,76 @@
+/* Dashboard Specific Styles */
+
+/* Common dashboard container styles */
+.dashboard-container {
+  @apply bg-white min-h-screen;
+}
+
+/* Header card styles */
+.dashboard-header {
+  @apply bg-white rounded-lg p-6 shadow-sm border border-gray-200 overflow-hidden;
+}
+
+/* Dashboard metrics */
+.dashboard-metric {
+  @apply bg-white p-4 rounded-lg border border-gray-200;
+}
+
+.metric-icon {
+  @apply p-2 bg-gray-100 rounded-lg;
+}
+
+.metric-text-primary {
+  @apply text-xl font-semibold text-gray-900;
+}
+
+.metric-text-secondary {
+  @apply text-sm text-gray-500 font-medium;
+}
+
+.metric-text-small {
+  @apply text-xs text-gray-500;
+}
+
+/* Card styles */
+.dashboard-card {
+  @apply border border-gray-200 shadow-sm bg-white;
+}
+
+.card-header {
+  @apply pb-3;
+}
+
+.card-title {
+  @apply flex items-center gap-2 text-base;
+}
+
+.card-icon {
+  @apply h-4 w-4 text-gray-700;
+}
+
+/* Activity item styles */
+.activity-item {
+  @apply flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md;
+}
+
+.status-indicator {
+  @apply w-2 h-2 bg-gray-400 rounded-full;
+}
+
+/* Button styles */
+.dashboard-button {
+  @apply h-20 flex-col gap-2 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300;
+}
+
+.dashboard-button-icon {
+  @apply h-5 w-5 text-gray-700;
+}
+
+/* Tab styles */
+.dashboard-tabs {
+  @apply grid w-full grid-cols-4 bg-gray-50 rounded-md p-1;
+}
+
+.dashboard-tab {
+  @apply rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900;
+}

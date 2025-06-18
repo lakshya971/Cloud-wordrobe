@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import './dashboard-styles.css';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -128,9 +129,8 @@ export function VendorDashboard() {
       stock: 15,
       revenue: 67000
     }
-  ]);
-  return (
-    <div className="min-h-screen bg-white">
+  ]);  return (
+    <div className="dashboard-container">
       <div className="space-y-6 p-6">
         {/* Header Section */}
         <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 overflow-hidden">
