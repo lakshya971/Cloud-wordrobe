@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import AnimatedButton from '@/components/ui/animated-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Separator } from '@/components/ui/separator';
@@ -22,6 +24,7 @@ export default function LoginPage() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,7 +49,7 @@ export default function LoginPage() {
         toast.success('Login successful!');
         // Use AuthContext login method
         login(data.token, data.user);
-        window.location.href = '/dashboard';
+        router.push('/dashboard');
       } else {
         toast.error(data.error || 'Login failed');
       }
@@ -176,13 +179,14 @@ export default function LoginPage() {
                     </div>
 
                     {/* Submit Button */}
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-orange-500 hover:bg-orange-600"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? 'Signing in...' : 'Sign In'}
-                    </Button>
+                    <div className="w-full flex justify-center">
+                      <AnimatedButton 
+                        color="#f97316"
+                        type="submit"
+                      >
+                        {isLoading ? 'Signing in...' : 'Sign In'}
+                      </AnimatedButton>
+                    </div>
                   </form>
 
                   <div className="mt-6">

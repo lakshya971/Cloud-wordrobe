@@ -1,35 +1,71 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { getUserByEmail, initializeDatabase } from '@/lib/database';
 
-export async function POST(request: Request) {
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+
+export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { email, password } = body;
+    // Initialize database on first request
+    await initializeDatabase();
+    
+    const { email, password } = await request.json();
 
-    // TODO: Replace this with your actual database authentication logic
-    // This is a mock response for demonstration
-    if (email && password) {
-      const mockUser = {
-        id: 1,
-        email: email,
-        name: 'Vendor Name',
-        role: 'vendor',
-        isVendor: true,
-        vendorPaid: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      };
-
-      return NextResponse.json({
-        success: true,
-        token: 'mock_vendor_token',
-        user: mockUser
-      });
+    // Validation
+    if (!email || !password) {
+      return NextResponse.json(
+        { success: false, message: 'Email and password are required' },
+        { status: 400 }
+      );
     }
 
-    return NextResponse.json(
-      { success: false, message: 'Invalid credentials' },
-      { status: 401 }
+    // Get user from database
+    const user = await getUserByEmail(email);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
+    // Verify user is a vendor
+    if (!user.isVendor) {
+      return NextResponse.json(
+        { success: false, message: 'Not a vendor account. Please use customer login.' },
+        { status: 403 }
+      );
+    }
+
+    // Check password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
+    // Create JWT token
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        email: user.email,
+        role: 'vendor', // Ensure role is set to vendor
+        isVendor: true,
+      },
+      JWT_SECRET,
+      { expiresIn: '7d' }
     );
+    
+    // Return the token and user data (excluding password)
+    const { password: _, ...userWithoutPassword } = user;
+    return NextResponse.json({
+      success: true,
+      token,
+      user: userWithoutPassword
+    });
+    
   } catch (error) {
     console.error('Vendor login error:', error);
     return NextResponse.json(

@@ -158,68 +158,66 @@ export function CustomerDashboard() {
     return diffDays;
   };
   return (
-    <div className="space-y-8">
-      {/* Header Section with Material-UI Style */}
+    <div className="space-y-8">      {/* Header Section with Professional Style */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative"
       >
-        <div className="bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl p-8 text-white overflow-hidden relative shadow-xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 backdrop-blur-3xl"></div>
+        <div className="bg-white rounded-lg p-6 border border-gray-200 overflow-hidden relative shadow-sm">
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                    <User className="h-8 w-8" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <User className="h-6 w-6 text-gray-700" />
                   </div>
                   <div>
-                    <h1 className="text-3xl font-bold">My Dashboard</h1>
-                    <p className="text-emerald-100">Your fashion journey and rental insights</p>
+                    <h1 className="text-2xl font-semibold text-gray-900">My Dashboard</h1>
+                    <p className="text-gray-600">Your fashion journey and rental insights</p>
                   </div>
                 </div>
               </div>
-              <Button variant="secondary" className="bg-white/20 border-white/30 text-white hover:bg-white/30">
+              <Button variant="outline" className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50">
                 <Gift className="h-4 w-4 mr-2" />
                 Loyalty Rewards
               </Button>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center gap-3">
-                  <ShoppingBag className="h-5 w-5 text-emerald-200" />
+                  <ShoppingBag className="h-5 w-5 text-gray-700" />
                   <div>
-                    <p className="text-emerald-100 text-sm">Total Orders</p>
-                    <p className="text-2xl font-bold">{stats.totalOrders}</p>
+                    <p className="text-gray-600 text-sm">Total Orders</p>
+                    <p className="text-xl font-semibold text-gray-900">{stats.totalOrders}</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center gap-3">
-                  <DollarSign className="h-5 w-5 text-green-200" />
+                  <DollarSign className="h-5 w-5 text-gray-700" />
                   <div>
-                    <p className="text-green-100 text-sm">Total Spent</p>
-                    <p className="text-2xl font-bold">₹{(stats.totalSpent / 1000).toFixed(1)}K</p>
+                    <p className="text-gray-600 text-sm">Total Spent</p>
+                    <p className="text-xl font-semibold text-gray-900">₹{(stats.totalSpent / 1000).toFixed(1)}K</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-blue-200" />
+                  <Calendar className="h-5 w-5 text-gray-700" />
                   <div>
-                    <p className="text-blue-100 text-sm">Active Rentals</p>
-                    <p className="text-2xl font-bold">{stats.activeRentals}</p>
+                    <p className="text-gray-600 text-sm">Active Rentals</p>
+                    <p className="text-xl font-semibold text-gray-900">{stats.activeRentals}</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-yellow-200" />
+                  <Award className="h-5 w-5 text-gray-700" />
                   <div>
-                    <p className="text-yellow-100 text-sm">Loyalty Points</p>
-                    <p className="text-2xl font-bold">{stats.loyaltyPoints}</p>
+                    <p className="text-gray-600 text-sm">Loyalty Points</p>
+                    <p className="text-xl font-semibold text-gray-900">{stats.loyaltyPoints}</p>
                   </div>
                 </div>
               </div>
@@ -228,32 +226,32 @@ export function CustomerDashboard() {
         </div>
       </motion.div>      {/* Main Content */}
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-2xl p-2">
+        <TabsList className="grid w-full grid-cols-4 bg-gray-50 border border-gray-200 shadow-sm rounded-md p-1">
           <TabsTrigger 
             value="overview"
-            className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+            className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm transition-all duration-200"
           >
             Overview
           </TabsTrigger>
           <TabsTrigger 
             value="orders"
-            className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+            className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm transition-all duration-200"
           >
             My Orders
           </TabsTrigger>
           <TabsTrigger 
             value="rentals"
-            className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+            className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm transition-all duration-200"
           >
             Active Rentals
           </TabsTrigger>
           <TabsTrigger 
             value="profile"
-            className="rounded-xl text-gray-600 data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-500 data-[state=active]:to-teal-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+            className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm transition-all duration-200"
           >
             Profile
           </TabsTrigger>
-        </TabsList>        <TabsContent value="overview" className="space-y-6">
+        </TabsList><TabsContent value="overview" className="space-y-6">
           {/* Quick Stats */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

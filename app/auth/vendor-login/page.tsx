@@ -29,16 +29,14 @@ export default function VendorLoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
-
-      if (!data.success) {
+      const data = await response.json();      if (!data.success) {
         throw new Error(data.message || 'Login failed');
       }
 
       // Call login with the token and user data received from the API
       await login(data.token, data.user);
       toast.success('Welcome back!');
-      router.push('/dashboard/vendor');
+      router.push('/dashboard');
     } catch (error) {
       toast.error('Invalid credentials. Please try again.');
     } finally {

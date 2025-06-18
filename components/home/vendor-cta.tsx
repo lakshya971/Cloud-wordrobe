@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { VendorRegistrationModal } from '@/components/vendor/vendor-registration-modal';
+import AnimatedButton from '@/components/ui/animated-button';
 
 export function VendorCTA() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +29,7 @@ export function VendorCTA() {
 
   return (
     <section className="py-20">
-      <div className="container mx-auto px-4">
+      <div className="w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -100,10 +101,10 @@ export function VendorCTA() {
               viewport={{ once: true }}
               transition={{ delay: 0.8 }}
             >
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white group" onClick={() => setIsModalOpen(true)}>
+              <AnimatedButton color="#f97316" onClick={() => setIsModalOpen(true)}>
                 Start Selling Today
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+                <ArrowRight className="ml-2 h-4 w-4 inline" />
+              </AnimatedButton>
             </motion.div>
           </motion.div>
 

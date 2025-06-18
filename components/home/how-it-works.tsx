@@ -5,6 +5,8 @@ import { Search, Calendar, CreditCard, Package, ArrowRight, CheckCircle, Clock, 
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import BookCard from './BookCard';
+import AnimatedButton from '@/components/ui/animated-button';
 
 export function HowItWorks() {
   const router = useRouter();
@@ -56,7 +58,7 @@ export function HowItWorks() {
 
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -83,8 +85,20 @@ export function HowItWorks() {
               transition={{ delay: index * 0.1 }}
               className="text-center relative"
             >
-              <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-8">
+              <div style={{ height: "320px" }}>
+                <BookCard 
+                  coverBgColor="#fb923c" 
+                  contentBgColor="white"
+                  coverContent={
+                    <>
+                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-4">
+                        <step.icon className="h-10 w-8 text-orange-500" />
+                      </div>
+                      <p className="font-bold text-white">Step {step.step}</p>
+                      <p className="text-white mt-2 text-sm">Hover to see details</p>
+                    </>
+                  }
+                >
                   {/* Step Number */}
                   <div className="w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold mx-auto mb-6">
                     {step.step}
@@ -92,7 +106,7 @@ export function HowItWorks() {
 
                   {/* Icon */}
                   <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <step.icon className="h-7 w-7 text-orange-500" />
+                    <step.icon className="h-8 w-8 text-orange-500" />
                   </div>
 
                   <h3 className="text-xl font-semibold mb-3 text-gray-900">
@@ -102,8 +116,8 @@ export function HowItWorks() {
                   <p className="text-gray-600 leading-relaxed">
                     {step.description}
                   </p>
-                </CardContent>
-              </Card>
+                </BookCard>
+              </div>
 
               {/* Connecting Arrow */}
               {index < steps.length - 1 && (
@@ -120,21 +134,24 @@ export function HowItWorks() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
         >
           {benefits.map((benefit, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex items-center space-x-4 p-6 bg-gray-50 rounded-lg"
+              whileHover={{ scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <div className="flex-shrink-0">
-                <benefit.icon className="h-6 w-6 text-orange-500" />
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-1">{benefit.text}</h4>
-                <p className="text-sm text-gray-600">{benefit.description}</p>
-              </div>
-            </div>
+              <Card className="shadow-md h-full">
+                <CardContent className="flex flex-col items-center text-center p-6">
+                  <div className="p-3 bg-gray-100 rounded-full mb-4 mt-2">
+                    <benefit.icon className="h-6 w-6 text-orange-500" />
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">{benefit.text}</h4>
+                  <p className="text-sm text-gray-600">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -144,34 +161,33 @@ export function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center"
-        >
-          <div className="bg-gray-50 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">
-              Ready to Get Started?
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Join thousands of users who trust Cloud Wardrobe for their fashion needs
-            </p>
+        >          <div className="max-w-2xl mx-auto">
+            <Card className="shadow-lg bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200">
+              <CardContent className="p-10 text-center">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                  Ready to Get Started?
+                </h3>
+                <p className="text-gray-600 mb-8">
+                  Join thousands of users who trust Cloud Wardrobe for their fashion needs
+                </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8"
-                onClick={() => router.push('/shop')}
-              >
-                Start Shopping
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-orange-500 text-orange-500 hover:bg-orange-50 px-8"
-                onClick={() => router.push('/rent')}
-              >
-                Explore Rentals
-              </Button>
-            </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">                <AnimatedButton
+                  color="#f97316"
+                  onClick={() => router.push('/shop')}
+                >
+                  Start Shopping
+                  <ArrowRight className="ml-2 h-4 w-4 inline" />
+                </AnimatedButton>
+                
+                <AnimatedButton
+                  color="#f97316"
+                  onClick={() => router.push('/rent')}
+                >
+                  Explore Rentals
+                </AnimatedButton>
+              </div>
+              </CardContent>
+            </Card>
           </div>
         </motion.div>
       </div>

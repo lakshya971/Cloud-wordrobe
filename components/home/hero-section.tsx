@@ -6,12 +6,13 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight, Play, Star, Users, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import AnimatedButton from '@/components/ui/animated-button';
 
 export function HeroSection() {
   const router = useRouter();
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-300 via-orange-100 to-orange-400 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden -mx-8 sm:-mx-12 lg:-mx-16 px-8 sm:px-12 lg:px-16 mb-16 rounded-2xl">
+    <section className="min-h-screen flex items-center justify-center overflow-hidden -mx-8 sm:-mx-12 lg:-mx-16 px-8 sm:px-12 lg:px-16 mb-16 rounded-2xl">
       <div className="w-full py-20">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
@@ -70,24 +71,21 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 w-full"
+              className="flex flex-col sm:flex-row gap-6 w-full"
             >
               <Link href="/shop" className="w-full sm:w-auto">
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white group w-full">
-                  Start Shopping
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
+                <AnimatedButton color="#f97316">
+                  Start Shopping <ArrowRight className="ml-2 h-4 w-4 inline" />
+                </AnimatedButton>
               </Link>
               
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="group w-full sm:w-auto"
+              <AnimatedButton 
+                color="#6b7280"
                 onClick={() => window.open('https://youtu.be/B5F61l-SKwI?si=jtvpebrA8MSEhdn9', '_blank')}
               >
-                <Play className="mr-2 h-4 w-4" />
+                <Play className="mr-2 h-4 w-4 inline" />
                 Watch Demo
-              </Button>
+              </AnimatedButton>
             </motion.div>
 
             {/* Stats */}

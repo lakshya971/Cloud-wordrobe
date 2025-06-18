@@ -2,12 +2,58 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Heart, Star, Calendar, ShoppingCart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCart } from '@/contexts/CartContext';
+import ProductFlipCard from './ProductFlipCard';
+import { ChevronRight, Sparkles, Clock, TrendingUp } from 'lucide-react';
+import React from 'react';
+import styled from 'styled-components';
+
+const StyledWrapper = styled.div`
+  .btn-group {
+    display: inline-flex;
+    border-radius: 0.5em;
+    overflow: hidden;
+  }
+  .btn {
+    font: inherit;
+    background-color: #f0f0f0;
+    border: 0;
+    color: #242424;
+    font-size: 1.15rem;
+    padding: 0.375em 1em;
+    text-shadow: 0 0.0625em 0 #fff;
+    box-shadow: inset 0 0.0625em 0 0 #f4f4f4, 0 0.0625em 0 0 #efefef,
+      0 0.125em 0 0 #ececec, 0 0.25em 0 0 #e0e0e0, 0 0.3125em 0 0 #dedede,
+      0 0.375em 0 0 #dcdcdc, 0 0.425em 0 0 #cacaca, 0 0.425em 0.5em 0 #cecece;
+    transition: 0.23s ease;
+    cursor: pointer;
+    font-weight: bold;
+    margin: -1px;
+  }
+  .middle {
+    border-radius: 0;
+  }
+  .right {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+  }
+  .left {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+  }
+  .btn:active {
+    transform: translate(0, 0.225em);
+    box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
+      0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
+      0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
+    letter-spacing: 0.1em;
+    color: skyblue;
+  }
+  .btn:focus {
+    color: skyblue;
+  }
+`;
 
 export function FeaturedProducts() {
   const [likedProducts, setLikedProducts] = useState<Set<number>>(new Set());
@@ -118,114 +164,42 @@ export function FeaturedProducts() {
         location: 'Goa',
       },
     ],
+  };  // Animation variants for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
   };
 
-  const ProductCard = ({ product }: { product: any }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Card className="overflow-hidden group cursor-pointer hover:shadow-lg transition-shadow">
-        <div className="relative">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-          
-          <Button
-            size="icon"
-            variant="ghost"
-            className="absolute top-2 right-2 text-white hover:text-red-500"
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleLike(product.id);
-            }}
-          >
-            <Heart 
-              className={`h-4 w-4 ${
-                likedProducts.has(product.id) 
-                  ? 'fill-red-500 text-red-500' 
-                  : ''
-              }`} 
-            />
-          </Button>
-
-          <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="flex space-x-2">
-              <Button 
-                size="sm" 
-                className="flex-1 bg-orange-500 hover:bg-orange-600"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addToCart(product, 'rent');
-                }}
-              >
-                <Calendar className="h-3 w-3 mr-1" />
-                Rent ₹{product.rentPrice}
-              </Button>
-              <Button 
-                size="sm" 
-                variant="secondary" 
-                className="flex-1"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addToCart(product, 'buy');
-                }}
-              >
-                <ShoppingCart className="h-3 w-3 mr-1" />
-                Buy
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <CardContent className="p-4">
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="font-semibold text-sm">{product.name}</h3>
-            <Badge variant="secondary" className="text-xs">
-              {product.location}
-            </Badge>
-          </div>
-
-          <p className="text-xs text-muted-foreground mb-2">by {product.vendor}</p>
-
-          <div className="flex items-center space-x-1 mb-3">
-            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-            <span className="text-xs font-medium">{product.rating}</span>
-            <span className="text-xs text-muted-foreground">({product.reviews})</span>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center space-x-2">
-                <span className="text-sm font-bold text-orange-500">₹{product.rentPrice}</span>
-                <span className="text-xs text-muted-foreground">/3 days</span>
-              </div>
-              <div className="text-xs text-muted-foreground">
-                Buy: ₹{product.buyPrice}
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden bg-white">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-24"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96"></div>
+      <div className="absolute top-20 left-10 w-64 h-64"></div>
+      
+      <div className="container mx-auto px-4 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          className="text-center mb-16"
+        >
+          <span className="inline-block py-1 px-3 rounded-full bg-orange-100 text-gray-900 text-sm font-medium mb-3">
+            Explore Our Collection
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-5 bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">
             Featured Products
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -234,34 +208,82 @@ export function FeaturedProducts() {
         </motion.div>
 
         <Tabs defaultValue="featured" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="featured">Featured</TabsTrigger>
-            <TabsTrigger value="latest">Latest</TabsTrigger>
-            <TabsTrigger value="topRented">Top Rented</TabsTrigger>
+          <TabsList className="flex rounded-xl p-1 max-w-xl mx-auto mb-10 bg-orange-50/80 border border-orange-100 shadow-sm">
+            <TabsTrigger value="featured" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-orange-600 rounded-lg py-3 transition-all duration-300">
+              <Sparkles size={16} className="mr-2" />
+              <span>Featured</span>
+            </TabsTrigger>
+            <TabsTrigger value="latest" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-orange-600 rounded-lg py-3 transition-all duration-300">
+              <Clock size={16} className="mr-2" />
+              <span>Latest</span>
+            </TabsTrigger>
+            <TabsTrigger value="topRented" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-orange-600 rounded-lg py-3 transition-all duration-300">
+              <TrendingUp size={16} className="mr-2" />
+              <span>Top Rented</span>
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="featured">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {products.featured.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <motion.div key={product.id} variants={itemVariants}>
+                  <ProductFlipCard
+                    product={product} 
+                    likedProducts={likedProducts}
+                    toggleLike={toggleLike}
+                    addToCart={addToCart}
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </TabsContent>
 
           <TabsContent value="latest">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {products.latest.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <motion.div key={product.id} variants={itemVariants}>
+                  <ProductFlipCard
+                    product={product} 
+                    likedProducts={likedProducts}
+                    toggleLike={toggleLike}
+                    addToCart={addToCart}
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </TabsContent>
 
           <TabsContent value="topRented">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {products.topRented.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <motion.div key={product.id} variants={itemVariants}>
+                  <ProductFlipCard
+                    product={product} 
+                    likedProducts={likedProducts}
+                    toggleLike={toggleLike}
+                    addToCart={addToCart}
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </TabsContent>
         </Tabs>
 
@@ -270,11 +292,9 @@ export function FeaturedProducts() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-center mt-12"
+          className="text-center mt-14"
         >
-          <Button size="lg" variant="outline">
-            View All Products
-          </Button>        </motion.div>
+        </motion.div>
       </div>
     </section>
   );

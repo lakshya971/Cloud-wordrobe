@@ -30,6 +30,7 @@ import {
   Store
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AnimatedButton from '@/components/ui/animated-button';
 import { Input } from '@/components/ui/input';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
@@ -197,7 +198,7 @@ export function Header() {
         className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-sm"
       >
         {/* Main Navigation */}
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full">
           <nav className="flex items-center justify-between h-14 px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -364,7 +365,7 @@ export function Header() {
 
         {/* Contact Bar - Moved below navbar */}
         <div className="border-t border-gray-100 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-10 text-sm text-gray-600">
               <div className="flex items-center divide-x divide-gray-200">
                 <div className="flex items-center gap-2 pr-4">

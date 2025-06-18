@@ -129,119 +129,113 @@ export function VendorDashboard() {
       revenue: 67000
     }
   ]);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
-      <div className="space-y-8 p-6">
+    <div className="min-h-screen bg-white">
+      <div className="space-y-6 p-6">
         {/* Header Section */}
-        <div className="relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full -translate-y-32 translate-x-32" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-blue-500/10 to-teal-500/10 rounded-full translate-y-24 -translate-x-24" />
-          
+        <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 overflow-hidden">
           <div className="relative z-10">
-            <div className="flex items-center gap-6 mb-8">
-              <div className="p-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-lg">
-                <Store className="h-8 w-8 text-white" />
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-gray-100 rounded-lg">
+                <Store className="h-7 w-7 text-gray-700" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Vendor Dashboard</h1>
-                <p className="text-gray-600 text-lg">
+                <h1 className="text-2xl font-semibold text-gray-900 mb-1">Vendor Dashboard</h1>
+                <p className="text-gray-600">
                   Manage your store, products, and track performance
                 </p>
               </div>
             </div>
             
             {/* Key Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl border border-blue-100"
+                className="bg-white p-4 rounded-lg border border-gray-200"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-blue-500 rounded-xl">
-                    <Package className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <Package className="h-5 w-5 text-gray-700" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 font-medium">Total Products</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.totalProducts}</p>
-                    <p className="text-xs text-blue-600 font-medium">Active listings</p>
+                    <p className="text-sm text-gray-500 font-medium">Total Products</p>
+                    <p className="text-xl font-semibold text-gray-900">{stats.totalProducts}</p>
+                    <p className="text-xs text-gray-500">Active listings</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-gradient-to-br from-emerald-50 to-green-50 p-6 rounded-2xl border border-emerald-100"
+                className="bg-white p-4 rounded-lg border border-gray-200"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-emerald-500 rounded-xl">
-                    <DollarSign className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <DollarSign className="h-5 w-5 text-gray-700" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 font-medium">Total Revenue</p>
-                    <p className="text-2xl font-bold text-gray-900">₹{(stats.totalRevenue / 100000).toFixed(1)}L</p>
-                    <p className="text-xs text-emerald-600 font-medium">All time earnings</p>
+                    <p className="text-sm text-gray-500 font-medium">Total Revenue</p>
+                    <p className="text-xl font-semibold text-gray-900">₹{(stats.totalRevenue / 100000).toFixed(1)}L</p>
+                    <p className="text-xs text-gray-500">All time earnings</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-2xl border border-amber-100"
+                className="bg-white p-4 rounded-lg border border-gray-200"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-amber-500 rounded-xl">
-                    <Star className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <Star className="h-5 w-5 text-gray-700" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 font-medium">Store Rating</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.avgRating}</p>
-                    <p className="text-xs text-amber-600 font-medium">{stats.totalReviews} reviews</p>
+                    <p className="text-sm text-gray-500 font-medium">Store Rating</p>
+                    <p className="text-xl font-semibold text-gray-900">{stats.avgRating}</p>
+                    <p className="text-xs text-gray-500">{stats.totalReviews} reviews</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-2xl border border-purple-100"
+                className="bg-white p-4 rounded-lg border border-gray-200"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-purple-500 rounded-xl">
-                    <TrendingUp className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <TrendingUp className="h-5 w-5 text-gray-700" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 font-medium">Growth Rate</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.growthRate}%</p>
-                    <p className="text-xs text-purple-600 font-medium">This month</p>
+                    <p className="text-sm text-gray-500 font-medium">Growth Rate</p>
+                    <p className="text-xl font-semibold text-gray-900">{stats.growthRate}%</p>
+                    <p className="text-xs text-gray-500">This month</p>
                   </div>
                 </div>
               </motion.div>
             </div>
           </div>
-        </div>
-
-        {/* Main Content */}
+        </div>        {/* Main Content */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <div className="bg-white rounded-2xl p-2 shadow-sm border border-gray-100">
-            <TabsList className="grid w-full grid-cols-4 bg-gray-50 rounded-xl p-1">
-              <TabsTrigger value="overview" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
+          <div className="bg-white rounded-lg p-1 shadow-sm border border-gray-200">
+            <TabsList className="grid w-full grid-cols-4 bg-gray-50 rounded-md p-1">
+              <TabsTrigger value="overview" className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900">
                 Overview
               </TabsTrigger>
-              <TabsTrigger value="products" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
+              <TabsTrigger value="products" className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900">
                 Products
               </TabsTrigger>
-              <TabsTrigger value="orders" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
+              <TabsTrigger value="orders" className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900">
                 Orders
               </TabsTrigger>
-              <TabsTrigger value="analytics" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
+              <TabsTrigger value="analytics" className="rounded-md text-gray-600 data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-gray-900">
                 Analytics
               </TabsTrigger>
             </TabsList>
@@ -249,11 +243,11 @@ export function VendorDashboard() {
 
           <TabsContent value="overview" className="space-y-6">
             {/* Performance Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <Card className="border border-gray-200 shadow-sm bg-white">
                 <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Target className="h-5 w-5 text-blue-500" />
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <Target className="h-4 w-4 text-gray-700" />
                     Sales Performance
                   </CardTitle>
                 </CardHeader>
@@ -261,46 +255,45 @@ export function VendorDashboard() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Conversion Rate</span>
-                      <span className="font-semibold text-blue-600">{stats.conversionRate}%</span>
+                      <span className="font-medium text-gray-700">{stats.conversionRate}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-blue-400 to-blue-600 h-3 rounded-full" style={{ width: `${stats.conversionRate * 10}%` }}></div>
+                    <div className="w-full bg-gray-100 rounded-full h-2">
+                      <div className="bg-gray-700 h-2 rounded-full" style={{ width: `${stats.conversionRate * 10}%` }}></div>
                     </div>
                   </div>
                   
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Return Customers</span>
-                      <span className="font-semibold text-emerald-600">{stats.returnCustomers}%</span>
+                      <span className="font-medium text-gray-700">{stats.returnCustomers}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-3 rounded-full" style={{ width: `${stats.returnCustomers}%` }}></div>
+                    <div className="w-full bg-gray-100 rounded-full h-2">
+                      <div className="bg-gray-700 h-2 rounded-full" style={{ width: `${stats.returnCustomers}%` }}></div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 pt-4">
-                    <div className="text-center p-3 bg-blue-50 rounded-xl">
-                      <p className="text-2xl font-bold text-blue-600">{stats.totalSales}</p>
+                    <div className="text-center p-3 bg-gray-50 rounded-md border border-gray-200">
+                      <p className="text-xl font-medium text-gray-800">{stats.totalSales}</p>
                       <p className="text-xs text-gray-600">Total Sales</p>
                     </div>
-                    <div className="text-center p-3 bg-purple-50 rounded-xl">
-                      <p className="text-2xl font-bold text-purple-600">{stats.activeRentals}</p>
+                    <div className="text-center p-3 bg-gray-50 rounded-md border border-gray-200">
+                      <p className="text-xl font-medium text-gray-800">{stats.activeRentals}</p>
                       <p className="text-xs text-gray-600">Active Rentals</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Activity className="h-5 w-5 text-green-500" />
+              <Card className="border border-gray-200 shadow-sm bg-white">                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <Activity className="h-4 w-4 text-gray-700" />
                     Recent Activity
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-xl border border-green-100">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">New Order Received</p>
                       <p className="text-xs text-gray-500">Wedding Lehenga Set - ₹1,999</p>
@@ -308,8 +301,8 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">2m ago</span>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl border border-blue-100">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">Product Viewed</p>
                       <p className="text-xs text-gray-500">Designer Saree - 15 views today</p>
@@ -317,8 +310,8 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">15m ago</span>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-xl border border-purple-100">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">Review Received</p>
                       <p className="text-xs text-gray-500">5-star rating on Fusion Wear</p>
@@ -326,8 +319,8 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">1h ago</span>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-xl border border-orange-100">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">Stock Alert</p>
                       <p className="text-xs text-gray-500">Low stock on 3 products</p>
@@ -335,62 +328,57 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">2h ago</span>
                   </div>
                 </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
+              </Card>              <Card className="border border-gray-200 shadow-sm bg-white">
                 <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Award className="h-5 w-5 text-purple-500" />
+                  <CardTitle className="flex items-center gap-2 text-base">
+                    <Award className="h-4 w-4 text-gray-700" />
                     Achievements
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="text-center p-4 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Award className="h-6 w-6 text-white" />
+                  <div className="text-center p-4 bg-gray-50 rounded-md border border-gray-200">
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Award className="h-5 w-5 text-gray-700" />
                     </div>
-                    <p className="font-semibold text-gray-800">Top Rated Vendor</p>
+                    <p className="font-medium text-gray-800">Top Rated Vendor</p>
                     <p className="text-xs text-gray-600">Maintained 4.8+ rating</p>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center p-3 bg-blue-50 rounded-xl">
-                      <p className="text-xl font-bold text-blue-600">156</p>
+                    <div className="text-center p-3 bg-white border border-gray-200 rounded-md">
+                      <p className="text-lg font-medium text-gray-800">156</p>
                       <p className="text-xs text-gray-600">Products</p>
                     </div>
-                    <div className="text-center p-3 bg-green-50 rounded-xl">
-                      <p className="text-xl font-bold text-green-600">2.8K</p>
+                    <div className="text-center p-3 bg-white border border-gray-200 rounded-md">
+                      <p className="text-lg font-medium text-gray-800">2.8K</p>
                       <p className="text-xs text-gray-600">Sales</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
-
-            {/* Quick Actions */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
+            </div>            {/* Quick Actions */}
+            <Card className="border border-gray-200 shadow-sm bg-white">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-yellow-500" />
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Zap className="h-4 w-4 text-gray-700" />
                   Quick Actions
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <Button variant="outline" className="h-20 flex-col gap-2 border-2 hover:border-blue-300 hover:bg-blue-50">
-                    <Plus className="h-6 w-6 text-blue-500" />
+                  <Button variant="outline" className="h-20 flex-col gap-2 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300">
+                    <Plus className="h-5 w-5 text-gray-700" />
                     <span className="text-sm">Add Product</span>
                   </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2 border-2 hover:border-green-300 hover:bg-green-50">
-                    <BarChart3 className="h-6 w-6 text-green-500" />
+                  <Button variant="outline" className="h-20 flex-col gap-2 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300">
+                    <BarChart3 className="h-5 w-5 text-gray-700" />
                     <span className="text-sm">View Analytics</span>
-                  </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2 border-2 hover:border-purple-300 hover:bg-purple-50">
-                    <MessageSquare className="h-6 w-6 text-purple-500" />
+                  </Button>                  <Button variant="outline" className="h-20 flex-col gap-2 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300">
+                    <MessageSquare className="h-5 w-5 text-gray-700" />
                     <span className="text-sm">Messages</span>
                   </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2 border-2 hover:border-orange-300 hover:bg-orange-50">
-                    <Upload className="h-6 w-6 text-orange-500" />
+                  <Button variant="outline" className="h-20 flex-col gap-2 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300">
+                    <Upload className="h-5 w-5 text-gray-700" />
                     <span className="text-sm">Bulk Upload</span>
                   </Button>
                 </div>
