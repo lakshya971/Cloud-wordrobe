@@ -241,24 +241,23 @@ export function VendorDashboard() {
             </TabsList>
           </div>
 
-          <TabsContent value="overview" className="space-y-6">
-            {/* Performance Cards */}
+          <TabsContent value="overview" className="space-y-6">            {/* Performance Cards */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <Card className="border border-gray-200 shadow-sm bg-white">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Target className="h-4 w-4 text-gray-700" />
+              <Card className="dashboard-card-highlight">
+                <CardHeader className="card-header">
+                  <CardTitle className="card-title">
+                    <Target className="card-icon" />
                     Sales Performance
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="card-content space-y-4">
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Conversion Rate</span>
                       <span className="font-medium text-gray-700">{stats.conversionRate}%</span>
                     </div>
-                    <div className="w-full bg-gray-100 rounded-full h-2">
-                      <div className="bg-gray-700 h-2 rounded-full" style={{ width: `${stats.conversionRate * 10}%` }}></div>
+                    <div className="progress-bar">
+                      <div className="progress-bar-fill" style={{ width: `${stats.conversionRate * 10}%` }}></div>
                     </div>
                   </div>
                   
@@ -267,33 +266,32 @@ export function VendorDashboard() {
                       <span className="text-sm text-gray-600">Return Customers</span>
                       <span className="font-medium text-gray-700">{stats.returnCustomers}%</span>
                     </div>
-                    <div className="w-full bg-gray-100 rounded-full h-2">
-                      <div className="bg-gray-700 h-2 rounded-full" style={{ width: `${stats.returnCustomers}%` }}></div>
+                    <div className="progress-bar">
+                      <div className="progress-bar-fill" style={{ width: `${stats.returnCustomers}%` }}></div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 pt-4">
-                    <div className="text-center p-3 bg-gray-50 rounded-md border border-gray-200">
+                    <div className="text-center p-3 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition-all duration-200">
                       <p className="text-xl font-medium text-gray-800">{stats.totalSales}</p>
                       <p className="text-xs text-gray-600">Total Sales</p>
                     </div>
-                    <div className="text-center p-3 bg-gray-50 rounded-md border border-gray-200">
+                    <div className="text-center p-3 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition-all duration-200">
                       <p className="text-xl font-medium text-gray-800">{stats.activeRentals}</p>
                       <p className="text-xs text-gray-600">Active Rentals</p>
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-
-              <Card className="border border-gray-200 shadow-sm bg-white">                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Activity className="h-4 w-4 text-gray-700" />
+              </Card>              <Card className="dashboard-card-highlight">
+                <CardHeader className="card-header">
+                  <CardTitle className="card-title">
+                    <Activity className="card-icon" />
                     Recent Activity
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+                <CardContent className="card-content space-y-3">
+                  <div className="activity-item-highlight">
+                    <div className="status-indicator animate-pulse"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">New Order Received</p>
                       <p className="text-xs text-gray-500">Wedding Lehenga Set - ₹1,999</p>
@@ -301,8 +299,8 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">2m ago</span>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  <div className="activity-item-highlight">
+                    <div className="status-indicator"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">Product Viewed</p>
                       <p className="text-xs text-gray-500">Designer Saree - 15 views today</p>
@@ -310,17 +308,15 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">15m ago</span>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  <div className="activity-item-highlight">
+                    <div className="status-indicator"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">Review Received</p>
                       <p className="text-xs text-gray-500">5-star rating on Fusion Wear</p>
                     </div>
                     <span className="text-xs text-gray-400">1h ago</span>
-                  </div>
-
-                  <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  </div>                  <div className="activity-item-highlight">
+                    <div className="status-indicator"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-700">Stock Alert</p>
                       <p className="text-xs text-gray-500">Low stock on 3 products</p>
@@ -328,15 +324,17 @@ export function VendorDashboard() {
                     <span className="text-xs text-gray-400">2h ago</span>
                   </div>
                 </CardContent>
-              </Card>              <Card className="border border-gray-200 shadow-sm bg-white">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Award className="h-4 w-4 text-gray-700" />
+              </Card>
+              
+              <Card className="dashboard-card-highlight">
+                <CardHeader className="card-header">
+                  <CardTitle className="card-title">
+                    <Award className="card-icon" />
                     Achievements
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="text-center p-4 bg-gray-50 rounded-md border border-gray-200">
+                <CardContent className="card-content space-y-4">
+                  <div className="text-center p-4 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition-all duration-200">
                     <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
                       <Award className="h-5 w-5 text-gray-700" />
                     </div>
@@ -345,19 +343,21 @@ export function VendorDashboard() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center p-3 bg-white border border-gray-200 rounded-md">
+                    <div className="text-center p-3 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-all duration-200">
                       <p className="text-lg font-medium text-gray-800">156</p>
                       <p className="text-xs text-gray-600">Products</p>
                     </div>
-                    <div className="text-center p-3 bg-white border border-gray-200 rounded-md">
+                    <div className="text-center p-3 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-all duration-200">
                       <p className="text-lg font-medium text-gray-800">2.8K</p>
                       <p className="text-xs text-gray-600">Sales</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>            {/* Quick Actions */}
-            <Card className="border border-gray-200 shadow-sm bg-white">
+            </div>
+            
+            {/* Quick Actions */}
+            <Card className="dashboard-card-highlight">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Zap className="h-4 w-4 text-gray-700" />

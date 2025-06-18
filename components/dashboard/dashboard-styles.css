@@ -33,15 +33,31 @@
 
 /* Card styles */
 .dashboard-card {
-  @apply border border-gray-200 shadow-sm bg-white;
+  @apply border border-gray-200 shadow-sm bg-white transition-all duration-300 hover:shadow-md rounded-lg;
+}
+
+.dashboard-card-highlight {
+  @apply border border-gray-200 shadow-md bg-white hover:shadow-lg transition-all duration-300 rounded-lg;
+}
+
+.dashboard-card-gradient {
+  @apply border-0 shadow-lg bg-gradient-to-br from-white to-gray-50 rounded-lg;
+}
+
+.dashboard-card-colored {
+  @apply border-0 shadow-lg rounded-lg;
 }
 
 .card-header {
-  @apply pb-3;
+  @apply pb-3 px-6 pt-6;
+}
+
+.card-content {
+  @apply p-6;
 }
 
 .card-title {
-  @apply flex items-center gap-2 text-base;
+  @apply flex items-center gap-2 text-base font-medium text-gray-800;
 }
 
 .card-icon {
@@ -53,8 +69,42 @@
   @apply flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-md;
 }
 
+.activity-item-highlight {
+  @apply flex items-center gap-3 p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-md transition-all duration-200;
+}
+
 .status-indicator {
   @apply w-2 h-2 bg-gray-400 rounded-full;
+}
+
+/* Badge styles */
+.dashboard-badge {
+  @apply px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-gray-100 text-gray-700;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-700;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-700;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-700;
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2;
+}
+
+.progress-bar-fill {
+  @apply h-2 rounded-full bg-gray-700;
 }
 
 /* Button styles */

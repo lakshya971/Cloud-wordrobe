@@ -7,6 +7,7 @@ import { CartProvider } from '@/contexts/CartContext';
 import { WishlistProvider } from '@/contexts/WishlistContext';
 import { RentalProvider } from '@/contexts/RentalContext';
 import { Toaster } from '@/components/ui/sonner';
+import StyledComponentsRegistry from '@/lib/registry';
 
 const poppins = Poppins({ 
   subsets: ['latin'],
@@ -34,23 +35,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} font-sans`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          <AuthProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <RentalProvider>
-                  {children}
-                  <Toaster />
-                </RentalProvider>
-              </WishlistProvider>
-            </CartProvider>
-          </AuthProvider>
-        </ThemeProvider>
+        <StyledComponentsRegistry>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange={false}
+          >
+            <AuthProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  <RentalProvider>
+                    {children}
+                    <Toaster />
+                  </RentalProvider>
+                </WishlistProvider>
+              </CartProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

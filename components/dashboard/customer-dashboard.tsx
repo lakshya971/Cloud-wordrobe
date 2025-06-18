@@ -157,21 +157,20 @@ export function CustomerDashboard() {
     const diffTime = endDate.getTime() - today.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
-  };
-  return (
-    <div className="space-y-8">      {/* Header Section with Professional Style */}
+  };  return (
+    <div className="dashboard-container">      {/* Header Section with Professional Style */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative"
       >
-        <div className="bg-white rounded-lg p-6 border border-gray-200 overflow-hidden relative shadow-sm">
+        <div className="dashboard-header">
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-gray-100 rounded-lg">
-                    <User className="h-6 w-6 text-gray-700" />
+                  <div className="metric-icon">
+                    <User className="h-5 w-5 text-gray-700" />
                   </div>
                   <div>
                     <h1 className="text-2xl font-semibold text-gray-900">My Dashboard</h1>
